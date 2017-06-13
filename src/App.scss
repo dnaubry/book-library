@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Unica+One|Vollkorn');
+@import 'styles/variables.scss';
+@import 'styles/main-container.scss';
+@import 'styles/book-list.scss';
+@import 'styles/book-detail.scss';
+@import 'styles/navbar.scss';
+
+.App {
+  font-family: $main-font;
+  margin: 0 2rem;
+
+  h1 {
+    font-family: $title-font;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-top: 0px;
+  }
+}
