@@ -1,0 +1,13 @@
+.library{
+  display: flex;
+  flex-direction: column;
+}
+
+.no-book {
+  font-size: 1.1em;
+  margin-bottom: 4rem;
+
+  @include atSmall {
+    margin-bottom: 5rem;
+  }
+}

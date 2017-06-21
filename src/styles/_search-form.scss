@@ -1,0 +1,49 @@
+.search-form {
+  margin-top: 3rem;
+  
+  input {
+    border: 4px double $black;
+    border-radius: 3px;
+    width: calc(100% - 80px);
+    padding: .3rem;
+    vertical-align: top;
+  }
+
+  &-label {
+    display: block;
+  }
+
+  &-button {
+    background-color: $black;
+    border: none;
+    border-radius: 3px;
+    color: $white;
+    font-family: $title-font;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-left: 1rem;
+    padding: .68rem 1rem;
+    transition: all 0.5s ease;
+    
+    &:hover {
+      background-color: $red;
+      cursor: pointer;
+    }
+  }
+
+  p {
+    margin-top: .5rem;
+    margin-left: .1rem;
+    text-align: right;
+    width: calc(100% - 100px);
+
+    a{
+      color: $red;
+      text-decoration: none;
+
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+}

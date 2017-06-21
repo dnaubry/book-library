@@ -1,0 +1,85 @@
+.book-list{
+  flex: 1;
+  display: flex;
+  overflow: auto;
+
+  &-menu {
+    border-top: 4px double $black;
+    border-bottom: 4px double $black;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: $title-font;
+    text-transform: uppercase;
+
+    .query-options {
+      display: flex;
+    }
+
+    .sort-options {
+      display: flex;
+    }
+
+    p {
+      font-weight: 700;
+      margin: .5rem 1rem;
+    }
+
+    .menu-btn {
+      background-color: transparent;
+      border: none;
+      margin: .5rem 1rem;
+      text-transform: uppercase;
+
+      &:hover {
+        color: $red;
+        cursor: pointer;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .active {
+      color: $red;
+      font-weight: 700;
+    }
+
+    .sort:after {
+      padding-left: .5rem;
+      content: "\21C5";
+    }
+  }
+
+  &-no-books {
+    margin-top: 2rem;
+  }
+}
+
+.list{
+  display: flex;
+  min-height: min-content;
+  padding: 0;
+  margin: 0;
+
+  &-item {
+    flex: 0;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 1rem;
+    text-align: center;
+    cursor: pointer;
+
+    .title {
+      font-family: $title-font;
+      font-size: 1.1em;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    img {
+      height: 300px;
+    }
+  }
+}

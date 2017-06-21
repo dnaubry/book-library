@@ -1,94 +1,57 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
-import firebase from 'firebase';
-import Rebase from 're-base';
-import BookDetail from './BookDetail';
-import Cover from './Cover';
+import Book from './Book';
 
-const app = firebase.initializeApp({
-    apiKey: "AIzaSyAr-xyniDhjy0bmAAiR2htICilgJCBMtk8",
-    authDomain: "book-library-fdf7f.firebaseapp.com",
-    databaseURL: "https://book-library-fdf7f.firebaseio.com",
-    projectId: "book-library-fdf7f",
-    storageBucket: "book-library-fdf7f.appspot.com",
-    messagingSenderId: "515456586411"
-  });
-export const base = Rebase.createClass(app.database());
+function BookList (props) {
+  let books = props.books;
+  const query = props.query,
+    sort = props.sort,
+    sortOrder = props.sortOrder;
 
-class BookList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: null,
-      selectedBook: null
-    };
+  const order = sortOrder ? ['desc'] : ['asc'];
 
-    this.handleClick = this.handleClick.bind(this);
-    this.writeReadStatus = this.writeReadStatus.bind(this);
-
-  }
-
-  componentDidMount() {
-      base.syncState('books', {
-        context: this,
-        state: 'books'
-      })
-  }
-
-  handleClick(book) {
-    this.setState(() => {
-      return {
-        selectedBook: book
-      }
+  if (query !== null && query !== 'all') {
+    books = _.filter(books, book => {
+      return book.status === query;
     })
   }
 
-  writeReadStatus(index, status) {
-    base.update(`books/${index}`, {
-      data: { readStatus: status }
-    });
+  if (sort !== null) {
+    books = _.orderBy(books, book => {
+      return book[sort];
+    }, order);
   }
 
-  // writeOwnedStatus(index) {
-  //   base.update(`books/${index}`, {
-  //     data: { ownedStatus: }
-  //   });
-  // }
+  const numOfBooks = books !== null ? Object.keys(books).length : 0;
 
-  renderList() {
-    return _.map(this.state.books, (book) => {
-      return (
-        <li
-          className="book-list-item"
-          key={book.isbn}
-          onClick={event => this.handleClick(book)}
-        >
-          <Cover
-            cover_i={book.cover_i}
-            size='M'
-            title={book.title}
-          />
-          <h3>{book.title}</h3>
-        </li>
-      );
-    });
-  }
-
-  render() {
-    return (
-      <div className='main-container'>
-        <ul className="book-list">
-          {this.state.books !== null && this.renderList()}
+  return (
+    <div className='book-list'>
+    {numOfBooks === 0 
+      ? <p className='book-list-no-books'>No books found. Select a new view or add some more books</p>
+      : <ul className="list">
+          {_.map(books, book => {
+            return (
+              <li
+                className='list-item'
+                key={book.id}
+                onClick={event => props.handleClick(book)}>
+                <Book book={book} coverSize='l' />
+              </li>
+            )
+          })}
         </ul>
-        {this.state.selectedBook === null
-            ? <p>Select a book to view details.</p>
-            : <BookDetail 
-                book={this.state.selectedBook}
-                index={this.state.selectedBook.isbn}
-                writeReadStatus={this.writeReadStatus} />}
-      </div>
-    );
-  }
+      }
+    </div>
+  )
 }
 
-export default BookList;
+BookList.propTypes = {
+  books: PropTypes.object.isRequired,
+  query: PropTypes.string.isRequired,
+  sort: PropTypes.string.isRequired,
+  sortOrder: PropTypes.bool.isRequired
+}
+
+export default BookList; 
+        

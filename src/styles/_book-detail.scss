@@ -1,0 +1,70 @@
+.book-detail {
+
+  @include atSmall {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  @include atMedium {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .book {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+
+    @include atSmall {
+    flex-direction: row;
+    }
+
+      img {
+        height: 450px;
+        width: 300px;
+        margin: 0 auto;
+        padding-bottom: 1rem;
+
+        @include atMedium {
+          height: 400px;
+          width: auto;
+          margin: auto;
+          padding-bottom: 0;
+        }
+      }
+
+    &-info {
+      margin-left: 10px;
+
+      .title {
+        font-size: 1.4em;
+        letter-spacing: .1em;
+        font-weight: 700;
+        margin-top: 1rem;
+      }
+
+      .author, .published {
+        font-size: 1.1em;
+      }
+
+      a {
+        color: $red;
+        text-decoration: none;
+
+        &:hover {
+          color: $black;
+        }
+      }
+
+      .show-more-btn {
+        background-color: $white;
+        border: none;
+        color: $red;
+
+        &:hover {
+          color: $black;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.book {
+
+  &-info {
+    .title {
+      font-family: $title-font;
+      text-transform: uppercase;
+    }
+  }
+}

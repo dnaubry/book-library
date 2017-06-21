@@ -1,11 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Unica+One|Vollkorn');
-@import 'styles/variables.scss';
-@import 'styles/main-container.scss';
-@import 'styles/book-list.scss';
-@import 'styles/book-detail.scss';
-@import 'styles/navbar.scss';
+@import 'styles/variables';
+@import 'styles/mixins';
+@import 'styles/library';
+@import 'styles/book';
+@import 'styles/book-toolbar';
+@import 'styles/book-list';
+@import 'styles/book-detail';
+@import 'styles/navbar';
+@import 'styles/add-book';
+@import 'styles/search-form';
+@import 'styles/results';
 
 .App {
+  background-color: $white;
   font-family: $main-font;
   margin: 0 2rem;
 
@@ -14,5 +21,26 @@
     letter-spacing: .1em;
     text-transform: uppercase;
     margin-top: 0px;
+  }
+
+  .scroll-to-top {
+    background-color: $red;
+    border-radius: 3px;
+    color: $white;
+    padding: .5rem .8rem;
+    font-size: 1.2em;
+    transition: all 0.5s ease;
+
+    &:hover {
+      background-color: $black;
+    }
+  }
+
+  .loading {
+    font-family: $title-font;
+    font-size: 3em;
+    padding: 2rem;
+    text-transform: uppercase;
+    text-align: center;
   }
 }
