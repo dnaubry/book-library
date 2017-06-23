@@ -1,44 +1,77 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function BookListMenu (props) {
-  const options = ['all', 'to-read', 'reading', 'have-read'];
-  const sortOptions = ['added', 'title', 'author'];
+class BookListMenu extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div className='book-list-menu'>
-      <div className='query-options'>
-        <p>View:</p>
-          {options.map(option => {
-            return (
-              <button
-                key={option}
-                value={option}
-                className={option === props.query
-                  ? 'menu-btn active' : 'menu-btn'}
-                onClick={event => props.queryBooks(event)}>
-                {option}
-              </button>
-            )
-          })}
+    this.state = {
+      viewExpanded: true,
+      sortExpanded: false
+    }
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    const viewExpanded = !this.state.viewExpanded;
+    const sortExpanded = !this.state.sortExpanded;
+
+    this.setState({ viewExpanded, sortExpanded });
+  }
+
+  render() {
+    const props = this.props;
+    const options = ['all', 'to-read', 'reading', 'have-read'];
+    const sortOptions = ['added', 'title', 'author'];
+   
+    return (
+      <div className='book-list-menu'>
+        <div className='query-options'>
+          <button className='btn-black option-btn-header' onClick={this.handleClick}>
+            View
+          </button>
+          <div className={this.state.viewExpanded === true 
+            ? 'menu-options'
+            : 'menu-options menu-options-hidden'}>
+            {options.map(option => {
+              return (
+                <button
+                  key={option}
+                  value={option}
+                  className={option === props.query
+                    ? 'btn-white option-btn active' : 'btn-white option-btn'}
+                  onClick={event => props.queryBooks(event)}>
+                  {option}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+        <div className='sort-options'>
+          <button className='btn-black option-btn-header' onClick={this.handleClick}>
+            Sort
+          </button>
+          <div className={this.state.sortExpanded === true
+            ? 'menu-options'
+            : 'menu-options menu-options-hidden'}>
+            {sortOptions.map(option => {
+              return (
+                <button
+                  key={option}
+                  value={option}
+                  className={option === props.sort
+                    ? 'btn-white option-btn active sort' : 'btn-white option-btn'}
+                  onClick={event => props.sortBooks(event)}>
+                  {option}
+                </button>
+              )
+            })}
+          </div>
+        </div>
       </div>
-      <div className='sort-options'>
-        <p>Sort by:</p>
-          {sortOptions.map(option => {
-            return (
-              <button
-                key={option}
-                value={option}
-                className={option === props.sort
-                  ? 'menu-btn active sort' : 'menu-btn'}
-                onClick={event => props.sortBooks(event)}>
-                {option}
-              </button>
-            )
-          })}
-      </div>
-    </div>
-  )
+    )
+  }
 }
 
 BookListMenu.propTypes = {

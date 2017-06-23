@@ -2,22 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Cover (props) {
-  let imageUrl = props.cover;
-  let urlLength = imageUrl.length;
-  imageUrl = imageUrl.substr(0, 45) + props.size + imageUrl.substring(46, urlLength);
+  const size = props.coverSize === 'small' ? 'zoom=5' : 'zoom=6';
+  const coverImage = `https://books.google.com/books/content?id=${props.id}&printsec=frontcover&img=1&${size}&source=gbs_api`;
   
   return (
     <img
-      src={!props.cover.includes('nophoto')
-            ? imageUrl
-            : props.cover}
+      src={coverImage}
       alt={`Cover for ${props.title}`}
     />
   )
 }
 
 Cover.propTypes = {
-  cover: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  coverSize: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 }
 

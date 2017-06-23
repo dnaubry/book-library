@@ -1,32 +1,113 @@
+/* AddBook Component */
 .add-book {
   
-
   @include atMedium {
     width: 70%;
     margin: 0 auto;
   }
 
   .add-selected-btn {
-    background-color: $black;
-    border: none;
-    color: $white;
-    font-family: $title-font;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: .5rem 1rem;
-    transition: all 0.5s ease;
-    
-    &:hover {
-      background-color: $red;
-      cursor: pointer;
-    }
+    padding: .62rem 1rem;
   }
 }
 
 .add-selected {
-  margin-top: 3rem;
+  margin-top: 2rem;
 
   p {
     margin-top: 2.5rem;
   }
+}
+
+/* SearchForm Component */
+.search-form {
+  margin-top: 3rem;
+  
+  input {
+    border: 4px double $black;
+    border-radius: 3px;
+    font-family: $main-font;
+    width: calc(100% - 101px);
+    padding: .3rem;
+    vertical-align: top;
+  }
+
+  &-label {
+    display: block;
+  }
+
+  &-btn {
+    margin-left: .5rem;
+    padding: .62rem 1rem;
+  }
+
+  p {
+    margin-top: .5rem;
+    margin-left: .1rem;
+    text-align: right;
+    width: calc(100% - 100px);
+  }
+}
+
+/* Displayed Search Results */
+.results {
+  margin-top: 1.5rem;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+
+  li {
+    text-align: center;
+    width: 150px;
+    list-style: none;
+    margin: .5rem;
+
+    img {
+      width: 100px;
+      height: 140px;
+    }
+
+    .title {
+      font-size: 1em;
+      letter-spacing: 0.05em;
+      margin: 0;
+    }
+
+    .author {
+      font-size: .9em;
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+  }
+
+  &-checkbox {
+    position: absolute;
+    left: -9999px;
+  }
+
+  &-checkbox-label {
+    display: block;
+    border: 4px solid $white;
+    padding: 1rem;
+    margin: .5rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-checkbox:checked + .results-checkbox-label {
+    border: 4px double $black;
+    border-radius: 3px;
+  }
+}
+
+.no-results {
+  color: $red;
+  font-size: 1.1em;
+  margin-top: 2rem;
 }

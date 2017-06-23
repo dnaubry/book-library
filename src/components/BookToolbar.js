@@ -1,31 +1,54 @@
 import React from 'react';
-import { Button, ButtonGroup, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 
 class BookToolbar extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showOptions: false
+    }
+
+    this.toggleOptions = this.toggleOptions.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  toggleOptions() {
+    this.setState({ showOptions: !this.state.showOptions });
+  }
+
+  handleClick(status) {
+    this.props.writeBookStatus.call(null, this.props.index, status);
+    this.setState({ showOptions: false });
+  }
+
   render() {
     const book = this.props.book;
     const options = ['to-read', 'reading', 'have-read'];
     return (
-      <ButtonToolbar className='book-toolbar'>
-          <ButtonGroup>
-            <DropdownButton 
-              title={book.status ? book.status : 'select one'}
-              id='read-status'
-              onSelect={this.props.writeBookStatus.bind(null, this.props.index)}
-              >
-              {options.map(status => {
-                return (
-                  <MenuItem key={status} eventKey={status}>{status}</MenuItem>
-                )
-              })}
-            </DropdownButton>
-          </ButtonGroup>
-          <Button
-            bsStyle="link"
+      <div className='book-toolbar'>
+        <div className='book-toolbar-main'>
+          <button className='btn-white header-btn' onClick={this.toggleOptions}>
+            {book.status ? book.status : 'select one'}<span>&#9660;</span>
+          </button>
+          <button
+            className='btn-white delete-btn'
             onClick={this.props.deleteBook.bind(null, this.props.index)}>
               Delete Book
-          </Button>
-      </ButtonToolbar>
+          </button>
+        </div>
+        {this.state.showOptions &&
+            <div className='book-toolbar-options'>
+            {options.map(status => {
+              return (<button
+                className='btn-white option-btn'
+                key={status}
+                onClick={this.handleClick.bind(null, status)}>
+                {status}
+              </button>)
+            })}
+          </div>
+          }
+      </div>
     )
   }
 }

@@ -36,7 +36,7 @@ function BookList (props) {
                 className='list-item'
                 key={book.id}
                 onClick={event => props.handleClick(book)}>
-                <Book book={book} coverSize='l' />
+                <Book book={book} coverSize='large' />
               </li>
             )
           })}

@@ -51,12 +51,11 @@ class SearchForm extends React.Component {
           onChange={this.handleChange} 
           />
           <button
-            className='search-form-button'
+            className='btn-black search-form-btn'
             type='submit'
             disabled={!this.state.term}>
             Search
             </button>
-            <p>Search powered by <a href='https://goodreads.com' target='_blank' rel="noopener noreferrer"> Goodreads</a></p>
         </form>
     )
   }
@@ -64,7 +63,7 @@ class SearchForm extends React.Component {
 
 SearchForm.propTypes = {
   onSearchSubmit: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired
 }
 
 export default SearchForm;

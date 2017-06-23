@@ -35,7 +35,7 @@ class BookDetail extends React.Component {
 
     return (
       <div className='book-detail'>
-        <Book book={book} coverSize='l'>
+        <Book book={book} coverSize='large'>
           <BookToolbar
             book={book}
             index={this.props.index}
@@ -44,8 +44,8 @@ class BookDetail extends React.Component {
           </BookToolbar>
           <p className='title'>{book.title}</p>
           {book.author && <p className='author'>Author: {book.author}</p>}
-          {book.pubYear && <p className='published'>
-          Published: {book.pubMonth && book.pubMonth} {book.pubYear}</p>}
+          {book.publishedDate && <p className='published'>
+          Published: {book.publishedDate}</p>}
           {book.description &&
             this.state.shortDescription
             ? (<p className='description'>

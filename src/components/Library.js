@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ScrollToTop from 'react-scroll-up';
-import { base } from '../utils/firebase.js';
+import { auth, base } from '../utils/firebase.js';
 import Loading from './Loading';
 import BookDetail from './BookDetail';
 import BookList from './BookList';
@@ -15,7 +15,7 @@ class Library extends Component {
       selectedBook: null,
       query: 'all',
       sort: 'added',
-      sortOrder: false
+      sortOrder: true
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -25,8 +25,10 @@ class Library extends Component {
     this.sortBooks = this.sortBooks.bind(this);
   }
 
+
   componentDidMount() {
-    this.ref = base.syncState('books', {
+    const userId = auth.currentUser.uid;
+    this.ref = base.syncState(`books/${userId}`, {
       context: this,
       state: 'books',
       then() {
@@ -55,7 +57,8 @@ class Library extends Component {
   }
 
   deleteBook(index) {
-    base.remove(`books/${index}`)
+    const userId = auth.currentUser.uid;
+    base.remove(`books/${userId}/${index}`)
       .then(() => {
         this.setState({
           selectedBook: null

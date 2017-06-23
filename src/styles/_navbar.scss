@@ -1,33 +1,27 @@
-.navbar-container {
-  margin-top: 2rem;
-
-  @include atSmall {
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
 .navbar {
-  font-family: $title-font;
-  font-size: 1.5em;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  padding: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 .5rem;
+  padding: 0;
   
-
-  @include atMedium {
+  @include atSmall {
     justify-content: flex-end;
   }
 
   li {
+    font-size: 1.1em;
+    letter-spacing: .1em;
     list-style: none;
-    padding: 10px 20px;
+    padding: 10px;
+
+    @include atSmall {
+      font-size: 1.3em;
+      padding: 10px 20px;
+    }
     
     a {
       color: $black;
-      text-decoration: none;
 
       &:hover {
         color: $red;
@@ -39,4 +33,11 @@
     color: $red;
     font-weight: 700;
   }
+
+  .sign-out-btn {
+    font-size: .7em;
+    padding: .5rem 1rem;
+  }    
 }
+
+  

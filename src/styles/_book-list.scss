@@ -7,16 +7,26 @@
     border-top: 4px double $black;
     border-bottom: 4px double $black;
     display: flex;
-    flex-wrap: wrap;
-    font-family: $title-font;
-    text-transform: uppercase;
 
-    .query-options {
+    .query-options, .sort-options, .search {
       display: flex;
+      align-items: center;
     }
 
-    .sort-options {
-      display: flex;
+    .menu-options {
+      width: 203px;
+      height: 30px;
+      opacity: 100;
+      transition: width 0.3s ease;
+      overflow: hidden;
+
+      @include atExtraSmall {
+        width: 280px;
+      }
+
+      &-hidden {
+        width: 0;
+      }
     }
 
     p {
@@ -24,19 +34,35 @@
       margin: .5rem 1rem;
     }
 
-    .menu-btn {
-      background-color: transparent;
-      border: none;
-      margin: .5rem 1rem;
-      text-transform: uppercase;
+    .option-btn {
+      font-size: .8em;
+      margin: .1rem 0;
+      padding: .3rem .3rem;
+
+      @include atExtraSmall {
+        font-size: .9em;
+        margin: .1rem .4rem;
+      }
 
       &:hover {
         color: $red;
-        cursor: pointer;
       }
 
       &:focus {
         outline: none;
+      }
+
+      &-header {
+        margin: .1rem .2rem;
+        padding: .3rem .5rem;
+
+        @include atExtraSmall {
+          margin: .1rem .2rem;
+        }
+
+        &:focus {
+          outline: none;
+        }
       }
     }
 
@@ -70,13 +96,6 @@
     margin: 1rem;
     text-align: center;
     cursor: pointer;
-
-    .title {
-      font-family: $title-font;
-      font-size: 1.1em;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
 
     img {
       height: 300px;

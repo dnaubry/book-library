@@ -4,11 +4,13 @@ import Cover from './Cover';
 
 function Book (props) {
   const book = props.book;
+
   return (
     <div className='book'>
       <Cover
+        id={book.id}
         cover={book.cover}
-        size={props.coverSize}
+        coverSize={props.coverSize}
         title={book.title} />
       <div className='book-info'>
         {props.children}
