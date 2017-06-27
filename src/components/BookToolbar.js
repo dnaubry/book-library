@@ -22,13 +22,12 @@ class BookToolbar extends React.Component {
   }
 
   render() {
-    const book = this.props.book;
     const options = ['to-read', 'reading', 'have-read'];
     return (
       <div className='book-toolbar'>
         <div className='book-toolbar-main'>
           <button className='btn-white header-btn' onClick={this.toggleOptions}>
-            {book.status ? book.status : 'select one'}<span>&#9660;</span>
+            {this.props.book.status ? this.props.book.status : 'select one'}<span>&#9660;</span>
           </button>
           <button
             className='btn-white delete-btn'

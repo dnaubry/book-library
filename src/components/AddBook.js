@@ -88,8 +88,8 @@ class AddBook extends React.Component {
         return bookKey === bookId;
       });
 
-      const userId = auth.currentUser.uid;
-      base.update(`books/${userId}`, {
+      this.uid = auth.currentUser.uid;
+      base.update(`library/${this.uid}/books`, {
         data: matchedBook
       }).then(() => {
         this.props.history.push('/');

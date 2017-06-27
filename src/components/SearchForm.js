@@ -14,12 +14,6 @@ class SearchForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    const id = this.props.id;
-    const input = document.getElementById(id);
-    input.focus();
-  }
-
   handleChange(event) {
     var value = event.target.value;
 
@@ -41,9 +35,10 @@ class SearchForm extends React.Component {
         className='search-form' 
         onSubmit={event => this.handleSubmit(event, this.state.term)}>
         <label className='search-form-label' htmlFor='search'>
-          Search by book title or author name
+          Search by title, author, or ISBN
         </label>
         <input
+          autoFocus
           id={this.props.id}
           type='text'
           autoComplete='off'

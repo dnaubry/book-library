@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import googleSignInImage from '../images/btn_google_signin_light_normal_web@2x.png';
+import googleSignInImage from '../images/btn_google_signin_dark_normal_web@2x.png';
 
 function Login (props) {
   return (

@@ -9,7 +9,7 @@ class BookDetail extends React.Component {
     this.state = {
       shortDescription: null
     }
-
+ 
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -22,6 +22,7 @@ class BookDetail extends React.Component {
 
     window.scrollTo(0, 500);
   }
+ 
 
   handleClick(){
     this.setState( { shortDescription: false });
@@ -57,7 +58,7 @@ class BookDetail extends React.Component {
                 </p>)
             : <p className='description'>{book.description}</p>}
           {book.link && <p className='link'>Book data from 
-            <a href={book.link} target='_blank' rel='noopener noreferrer'> Goodreads</a></p>}
+            <a href={book.link} target='_blank' rel='noopener noreferrer'> Google Books</a></p>}
         </Book>
 
       </div>

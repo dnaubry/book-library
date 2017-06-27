@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ScrollToTop from 'react-scroll-up';
 import { auth, base } from '../utils/firebase.js';
-import Loading from './Loading';
 import BookDetail from './BookDetail';
 import BookList from './BookList';
 import BookListMenu from './BookListMenu';
@@ -10,7 +9,6 @@ class Library extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
       books: null,
       selectedBook: null,
       query: 'all',
@@ -25,16 +23,19 @@ class Library extends Component {
     this.sortBooks = this.sortBooks.bind(this);
   }
 
-
   componentDidMount() {
-    const userId = auth.currentUser.uid;
-    this.ref = base.syncState(`books/${userId}`, {
+    this.uid = auth.currentUser.uid;
+    this.ref = base.syncState(`library/${this.uid}/books`, {
       context: this,
-      state: 'books',
-      then() {
-        this.setState({ loading: false })
-      }
+      state: 'books'
     });
+
+    
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  
   }
 
   handleClick(book) {
@@ -46,7 +47,7 @@ class Library extends Component {
   }
 
   writeBookStatus(index, option) {
-    this.setState((prevState) => {
+     this.setState((prevState) => {
       const newState = prevState.books;
       newState[index].status = option;
       
@@ -57,8 +58,7 @@ class Library extends Component {
   }
 
   deleteBook(index) {
-    const userId = auth.currentUser.uid;
-    base.remove(`books/${userId}/${index}`)
+    base.remove(`library/${this.uid}/books/${index}`)
       .then(() => {
         this.setState({
           selectedBook: null
@@ -86,7 +86,6 @@ class Library extends Component {
 
   render() {
     const books = this.state.books,
-      loading = this.state.loading,
       selectedBook = this.state.selectedBook;
     
     return (
@@ -95,9 +94,8 @@ class Library extends Component {
           queryBooks={this.queryBooks} query={this.state.query}
           sortBooks={this.sortBooks} sort={this.state.sort}
           clearQuery={this.clearQuery} />
-        {loading
-          ? <Loading />
-          : <BookList 
+        {books !== null &&
+          <BookList 
               handleClick={this.handleClick} 
               books={books}
               query={this.state.query}

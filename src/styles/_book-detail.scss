@@ -13,6 +13,7 @@
   .book {
     display: flex;
     flex-direction: column;
+
     margin-top: 2rem;
 
     @include atSmall {
@@ -25,11 +26,8 @@
       margin: 0 auto;
       padding-bottom: 1rem;
 
-      @include atMedium {
-        height: 400px;
-        width: auto;
-        margin: auto;
-        padding-bottom: 0;
+      @include atSmall {
+        flex: 0 0 300px;
       }
     }
 

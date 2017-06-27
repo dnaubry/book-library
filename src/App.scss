@@ -63,11 +63,6 @@ html, body {
   }
 
 /* Library Component */
-  .library{
-    display: flex;
-    flex-direction: column;
-  }
-
   .no-book {
     font-size: 1.1em;
     margin-bottom: 4rem;
@@ -112,14 +107,5 @@ html, body {
     &:hover {
       background-color: $black;
     }
-  }
-
-/* Loading Component */
-  .loading {
-    font-family: $title-font;
-    font-size: 3em;
-    padding: 2rem;
-    text-transform: uppercase;
-    text-align: center;
   }
 }

@@ -1,7 +1,4 @@
 .book-list{
-  flex: 1;
-  display: flex;
-  overflow: auto;
 
   &-menu {
     border-top: 4px double $black;
@@ -22,6 +19,10 @@
 
       @include atExtraSmall {
         width: 280px;
+      }
+
+      @include atSmall {
+        width: 300px;
       }
 
       &-hidden {
@@ -84,16 +85,15 @@
 
 .list{
   display: flex;
-  min-height: min-content;
   padding: 0;
   margin: 0;
+  overflow: auto;
 
   &-item {
-    flex: 0;
-    display: flex;
-    flex-direction: column;
+    flex: 0 0 200px;
     list-style: none;
-    margin: 1rem;
+    height: 300px;
+    margin: .5rem;
     text-align: center;
     cursor: pointer;
 
